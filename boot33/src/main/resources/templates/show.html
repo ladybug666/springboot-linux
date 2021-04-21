@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript"></script>
+<body>
+
+    <table border="1" cellspacing="1" cellpadding="1" width="500">
+        <tr>
+            <td>id</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>操作</td>
+        </tr>
+
+        <tr th:each="aa:${list}">
+            <td th:text="${aa.id}"></td>
+            <td th:text="${aa.username}"></td>
+            <td th:text="${aa.password}"></td>
+            <td><a href="" th:href="@{'/updateUser/'+${aa.id}}">修改</a>
+                <a href="" th:href="@{'/deleteUser/'+${aa.id}}">删除</a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

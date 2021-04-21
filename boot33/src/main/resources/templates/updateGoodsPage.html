@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+    <script>
+        $('file').change(function () {
+            // 先获取用户上传的文件对象
+            let fileObj = this.files[0];
+            // 生成一个文件读取的内置对象
+            let fileReader = new FileReader();
+            // 将文件对象传递给内置对象
+            fileReader.readAsDataURL(fileObj); //这是一个异步执行的过程，所以需要onload回调函数执行读取数据后的操作
+            // 将读取出文件对象替换到img标签
+            fileReader.onload = function(){  // 等待文件阅读器读取完毕再渲染图片
+                $('#id_img').attr('src',fileReader.result)
+            }
+        });
+    </script>
+</head>
+<body>
+    <form action="" th:action="@{/updateGoods1}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" th:value="${goods.id}"/>
+        商品名称:<input type="text" th:value="${goods.goodsName}"/><br/>
+        <img th:src="${goods.picture}" width="50" height="50" id="id_img"/>
+        商品图片:<input type="file" name="file" id="file"/><br/>
+        <input type="hidden" name="picture" th:value="${goods.picture}"/><br/>
+        商品名称:<input type="date" name="productDate" th:value="${goods.productDate}"/><br/>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

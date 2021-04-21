@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ladybug.dao.UserMapper">
+    <select id="login" parameterType="com.ladybug.entity.User" resultType="com.ladybug.entity.User">
+        select * from user where username=#{username} and password=#{password}
+    </select>
+    <insert id="add" parameterType="com.ladybug.entity.User">
+        insert into user values(#{id},#{username},#{password})
+    </insert>
+    <select id="select" resultType="com.ladybug.entity.User">
+        select * from user
+    </select>
+    <select id="find" parameterType="int" resultType="com.ladybug.entity.User">
+        select * from user where id=#{id}
+    </select>
+    <update id="update" parameterType="com.ladybug.entity.User">
+        update user set username=#{username},password=#{password} where id=#{id}
+    </update>
+    <delete id="delete">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
